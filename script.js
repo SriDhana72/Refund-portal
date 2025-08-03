@@ -7,8 +7,7 @@ const step2Content = document.getElementById('step-2-content');
 // Get reference to the refresh button
 const refreshButton = document.getElementById('refresh-button');
 
-// Get references to the new buttons
-const customDowngradeButton = document.getElementById('custom-downgrade-button');
+// Get references to the action buttons
 const proceedButton = document.getElementById('proceed-button');
 
 // Function to update the active step
@@ -70,8 +69,7 @@ function resetPage() {
     document.getElementById('selected-total-amount-crm').textContent = '$0';
     document.getElementById('selected-total-amount-books').textContent = '$0';
     
-    // Disable the new buttons
-    customDowngradeButton.disabled = true;
+    // Disable the proceed button
     proceedButton.disabled = true;
 }
 
@@ -177,14 +175,10 @@ portalSelectDropdownCrm.addEventListener('click', (e) => {
         
         if (selectedValue === 'crm-12345') {
             downgradeOptionsCrm.classList.remove('hidden');
-            // Enable the action buttons
-            customDowngradeButton.disabled = false;
             proceedButton.disabled = false;
         } else {
             downgradeOptionsCrm.classList.add('hidden');
             accountTransactionsCrm.classList.add('hidden');
-            // Disable the action buttons
-            customDowngradeButton.disabled = true;
             proceedButton.disabled = true;
         }
     }
@@ -213,14 +207,10 @@ if (portalSelectDropdownBooks) {
             // Show downgrade options if a portal is selected for Books
             if (selectedValue) {
                  downgradeOptionsBooks.classList.remove('hidden');
-                 // Enable the action buttons
-                 customDowngradeButton.disabled = false;
                  proceedButton.disabled = false;
             } else {
                  downgradeOptionsBooks.classList.add('hidden');
                  accountTransactionsBooks.classList.add('hidden');
-                 // Disable the action buttons
-                 customDowngradeButton.disabled = true;
                  proceedButton.disabled = true;
             }
         }
@@ -313,28 +303,6 @@ downgradeRadiosBooks.forEach(radio => {
     });
 });
 
-// --- New Logic for the Custom Downgrade Button ---
-if (customDowngradeButton) {
-    customDowngradeButton.addEventListener('click', () => {
-        // Determine the active service based on which fields are visible
-        if (!crmFieldsContainer.classList.contains('hidden')) {
-            // It's the CRM service, select the partial downgrade radio button
-            const partialRadioCrm = document.getElementById('partial-downgrade-crm');
-            if (partialRadioCrm) {
-                partialRadioCrm.checked = true;
-                partialRadioCrm.dispatchEvent(new Event('change'));
-            }
-        } else if (!booksFieldsContainer.classList.contains('hidden')) {
-            // It's the Books service, select the partial downgrade radio button
-            const partialRadioBooks = document.getElementById('partial-downgrade-books');
-            if (partialRadioBooks) {
-                partialRadioBooks.checked = true;
-                partialRadioBooks.dispatchEvent(new Event('change'));
-            }
-        }
-    });
-}
-
 // --- Step 1 to Step 2 Transition Logic ---
 const backToDowngradeButton = document.getElementById('back-to-downgrade-button');
 
@@ -342,14 +310,12 @@ const backToDowngradeButton = document.getElementById('back-to-downgrade-button'
 proceedButton.addEventListener('click', () => {
     // Disable the button and show a processing state
     proceedButton.disabled = true;
-    customDowngradeButton.disabled = true; // Disable the other button too
     proceedButton.textContent = 'Processing...';
 
     // Simulate a network request or processing time
     setTimeout(() => {
         // Change button state back
         proceedButton.disabled = false;
-        customDowngradeButton.disabled = false;
         proceedButton.textContent = 'Proceed with Downgrade';
 
         // Transition to Step 2

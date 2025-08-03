@@ -62,7 +62,7 @@ body {
     background-color: #eff6ff;
 }
 
-/* NEW: Keyframes for a smooth spin animation */
+/* Keyframes for a smooth spin animation */
 @keyframes spin {
     from {
         transform: rotate(0deg);
@@ -72,7 +72,7 @@ body {
     }
 }
 
-/* NEW: Apply the spin animation on hover for the refresh button */
+/* Apply the spin animation on hover for the refresh button */
 #refresh-button svg {
     transition: transform 0.5s ease-in-out;
 }

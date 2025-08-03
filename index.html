@@ -15,11 +15,8 @@
         
         <!-- Header Section -->
         <header class="flex justify-center items-center relative">
-            <!-- REDUCED: Font size from text-3xl to text-2xl -->
             <h1 class="text-2xl font-bold text-gray-800 text-center">Zoho Refund Portal</h1>
-            <!-- UPDATED: Refresh button with a new icon and hover animation -->
             <button id="refresh-button" class="absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded-full text-gray-500 hover:text-blue-600 hover:bg-gray-200 transition-colors duration-200 ease-in-out">
-                <!-- REDUCED: Icon size from h-6 w-6 to h-5 w-5 -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.836 10H19v-5m-1.956-6.44l-3.333 3.333M6.511 6.511L9.844 9.844M12 20a8 8 0 100-16 8 8 0 000 16z" />
                 </svg>
@@ -30,16 +27,13 @@
         <div class="flex justify-center">
             <div class="inline-flex rounded-lg bg-white p-1 shadow-md">
                 <!-- Step 1 button with a checkmark for completion -->
-                <!-- REDUCED: Padding from px-6 py-2 to px-4 py-2 -->
                 <button id="step-1" class="step-button flex items-center px-4 py-2 font-medium rounded-lg transition-colors duration-200 ease-in-out active">
-                    <!-- REDUCED: Icon size from h-5 w-5 to h-4 w-4 -->
                     <svg id="step-1-icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                     Step 1: Account Downgrade
                 </button>
                 <!-- Step 2 button -->
-                <!-- REDUCED: Padding from px-6 py-2 to px-4 py-2 -->
                 <button id="step-2" class="step-button px-4 py-2 text-gray-500 font-medium rounded-lg transition-colors duration-200 ease-in-out">
                     Step 2: Refund Calculation
                 </button>
@@ -49,12 +43,10 @@
         <!-- Section for Step 1 content - this is the main downgrade form -->
         <div id="step-1-content">
             <!-- Account Downgrade Form Card -->
-            <!-- REDUCED: Padding from p-8 to p-6 -->
             <div class="bg-white rounded-3xl shadow-xl p-6 space-y-4">
                 <!-- Red alert message - initially hidden -->
                 <div id="red-message" class="bg-red-50 border-l-4 border-red-400 text-red-700 p-3 rounded-lg hidden" role="alert">
                     <div class="flex items-center">
-                        <!-- REDUCED: Icon size from h-6 w-6 to h-5 w-5 -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -67,7 +59,6 @@
 
                 <!-- Form Header -->
                 <div>
-                    <!-- REDUCED: Font size from text-xl to text-lg -->
                     <h2 class="text-lg font-bold text-gray-800">Account Downgrade</h2>
                     <p class="text-gray-500 mt-1 text-sm">First, select the service and downgrade type</p>
                 </div>
@@ -75,7 +66,6 @@
                 <!-- Customer Email Input -->
                 <div>
                     <label for="customer-email" class="block text-sm font-medium text-gray-700 mb-1">Customer Email</label>
-                    <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                     <input type="email" id="customer-email" placeholder="customer@example.com" class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
                 </div>
 
@@ -85,10 +75,8 @@
                     <!-- Container for the custom dropdown -->
                     <div class="relative">
                         <!-- The visible button/input for the dropdown -->
-                        <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                         <button id="custom-select-button" class="custom-select-btn w-full flex items-center justify-between px-3 py-2 rounded-xl border border-gray-300 bg-white text-gray-500 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-150 ease-in-out text-sm">
                             <span id="selected-option-text">Choose a service</span>
-                            <!-- REDUCED: Icon size from h-5 w-5 to h-4 w-4 -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
@@ -105,16 +93,14 @@
                 <div id="crm-fields" class="space-y-4 hidden">
                     <!-- Select Portal Dropdown -->
                     <div>
-                        <label for="portal-select-button" class="block text-sm font-medium text-gray-700 mb-1">Select Portal</label>
+                        <label for="portal-select-button-crm" class="block text-sm font-medium text-gray-700 mb-1">Select Portal</label>
                         <div class="relative">
-                            <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                             <button id="portal-select-button-crm" class="custom-select-btn w-full flex items-center justify-between px-3 py-2 rounded-xl border border-gray-300 bg-white text-gray-500 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-150 ease-in-out text-sm">
                                 <span id="selected-portal-text-crm">Select a portal</span>
-                                <!-- REDUCED: Icon size from h-5 w-5 to h-4 w-4 -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
+                            </svg>
+                        </button>
                             <div id="portal-select-dropdown-crm" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-max text-sm">
                                 <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="crm-12345">CRM - 12345</a>
                                 <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="crm-67890">CRM - 67890</a>
@@ -125,14 +111,12 @@
                     <!-- Zoho Unique ID (ZUID) Input -->
                     <div>
                         <label for="zuid-input-crm" class="block text-sm font-medium text-gray-700 mb-1">Zoho Unique ID (ZUID)</label>
-                        <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                         <input type="text" id="zuid-input-crm" placeholder="ZUID-0001" value="ZUID-0001" class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
                     </div>
 
                     <!-- Green message - only shown with CRM fields -->
                     <div id="green-message-crm" class="bg-green-50 border-l-4 border-green-400 text-green-700 p-3 rounded-lg hidden">
                         <div class="flex items-center">
-                            <!-- REDUCED: Icon size from h-6 w-6 to h-5 w-5 -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -145,29 +129,24 @@
                     
                     <!-- Downgrade options - initially hidden -->
                     <div id="downgrade-options-crm" class="space-y-3 hidden">
+                        <h3 class="text-base font-bold text-gray-800">Custom Downgrade</h3>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Select Downgrade Type</label>
                             <div class="flex flex-col md:flex-row gap-4">
                                 <!-- Complete Downgrade Option Card -->
-                                <!-- REDUCED: Padding from p-4 to p-3 -->
                                 <label class="downgrade-option flex-1 flex items-center p-3 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
                                     <input id="complete-downgrade-crm" type="radio" name="downgrade-type-crm" value="complete" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
                                     <div class="ml-4">
-                                        <!-- REDUCED: Text size and font weight for h4 -->
                                         <h4 class="font-medium text-gray-800">Complete Downgrade</h4>
-                                        <!-- REDUCED: Text size for p -->
                                         <p class="text-xs text-gray-500 mt-1">Downgrade entire account to free plan</p>
                                     </div>
                                 </label>
 
                                 <!-- Partial Downgrade Option Card -->
-                                <!-- REDUCED: Padding from p-4 to p-3 -->
                                 <label class="downgrade-option flex-1 flex items-center p-3 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
                                     <input id="partial-downgrade-crm" type="radio" name="downgrade-type-crm" value="partial" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
                                     <div class="ml-4">
-                                        <!-- REDUCED: Text size and font weight for h4 -->
                                         <h4 class="font-medium text-gray-800">Partial Downgrade</h4>
-                                        <!-- REDUCED: Text size for p -->
                                         <p class="text-xs text-gray-500 mt-1">Select specific features to downgrade</p>
                                     </div>
                                 </label>
@@ -177,12 +156,9 @@
 
                     <!-- Account Transactions Section with checkboxes - hidden by default -->
                     <div id="account-transactions-crm" class="space-y-3 hidden">
-                        <!-- REDUCED: Font size from text-lg to text-base -->
                         <h3 id="transactions-header-crm" class="text-base font-bold text-gray-800">Account Transactions</h3>
-                        <!-- REDUCED: Padding from p-4 to p-3 -->
                         <div class="bg-white p-3 rounded-xl shadow-inner border border-gray-200 text-sm">
                             <!-- Transaction item 1 (wrapped in a label) -->
-                            <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                             <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                                 <div class="flex items-center">
                                     <input type="checkbox" data-value="3500" class="form-checkbox h-5 w-5 text-blue-600 rounded">
@@ -194,7 +170,6 @@
                                 <p class="font-bold">$3,500</p>
                             </label>
                             <!-- Transaction item 2 (wrapped in a label) -->
-                            <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                             <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                                 <div class="flex items-center">
                                     <input type="checkbox" data-value="500" class="form-checkbox h-5 w-5 text-blue-600 rounded">
@@ -206,7 +181,6 @@
                                 <p class="font-bold">$500</p>
                             </label>
                             <!-- Transaction item 3 (wrapped in a label) -->
-                            <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                             <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                                 <div class="flex items-center">
                                     <input type="checkbox" data-value="300" class="form-checkbox h-5 w-5 text-blue-600 rounded">
@@ -218,7 +192,6 @@
                                 <p class="font-bold">$300</p>
                             </label>
                             <!-- Transaction item 4 (wrapped in a label) -->
-                            <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                             <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                                 <div class="flex items-center">
                                     <input type="checkbox" data-value="700" class="form-checkbox h-5 w-5 text-blue-600 rounded">
@@ -232,7 +205,6 @@
                             <!-- Selected Total -->
                             <div class="flex justify-between items-center text-gray-900 border-t border-gray-200 pt-2 mt-2">
                                 <p class="font-bold">Selected Total</p>
-                                <!-- REDUCED: Font size from text-xl to text-lg -->
                                 <p id="selected-total-amount-crm" class="font-bold text-lg">$0</p>
                             </div>
                         </div>
@@ -245,16 +217,13 @@
                     <div>
                         <label for="portal-select-button-books" class="block text-sm font-medium text-gray-700 mb-1">Select Portal</label>
                         <div class="relative">
-                            <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                             <button id="portal-select-button-books" class="custom-select-btn w-full flex items-center justify-between px-3 py-2 rounded-xl border border-gray-300 bg-white text-gray-500 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-150 ease-in-out text-sm">
                                 <span id="selected-portal-text-books">Select a portal</span>
-                                <!-- REDUCED: Icon size from h-5 w-5 to h-4 w-4 -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                 </svg>
                             </button>
                             <div id="portal-select-dropdown-books" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-max text-sm">
-                                <!-- UPDATED: Only one option for the Books portal -->
                                 <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="books-54321">Books- 54321</a>
                             </div>
                         </div>
@@ -263,14 +232,12 @@
                     <!-- Zoho Unique ID (ZUID) Input -->
                     <div>
                         <label for="zuid-input-books" class="block text-sm font-medium text-gray-700 mb-1">Zoho Unique ID (ZUID)</label>
-                        <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                         <input type="text" id="zuid-input-books" placeholder="ZUID-0002" value="ZUID-0002" class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
                     </div>
 
                     <!-- Green message for Books -->
                     <div id="green-message-books" class="bg-green-50 border-l-4 border-green-400 text-green-700 p-3 rounded-lg hidden">
                         <div class="flex items-center">
-                            <!-- REDUCED: Icon size from h-6 w-6 to h-5 w-5 -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -283,29 +250,24 @@
                     
                     <!-- Downgrade options for Books -->
                     <div id="downgrade-options-books" class="space-y-3 hidden">
+                        <h3 class="text-base font-bold text-gray-800">Custom Downgrade</h3>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Select Downgrade Type</label>
                             <div class="flex flex-col md:flex-row gap-4">
                                 <!-- Complete Downgrade Option Card -->
-                                <!-- REDUCED: Padding from p-4 to p-3 -->
                                 <label class="downgrade-option flex-1 flex items-center p-3 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
                                     <input id="complete-downgrade-books" type="radio" name="downgrade-type-books" value="complete" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
                                     <div class="ml-4">
-                                        <!-- REDUCED: Text size and font weight for h4 -->
                                         <h4 class="font-medium text-gray-800">Complete Downgrade</h4>
-                                        <!-- REDUCED: Text size for p -->
                                         <p class="text-xs text-gray-500 mt-1">Downgrade entire account to free plan</p>
                                     </div>
                                 </label>
 
                                 <!-- Partial Downgrade Option Card -->
-                                <!-- REDUCED: Padding from p-4 to p-3 -->
                                 <label class="downgrade-option flex-1 flex items-center p-3 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
                                     <input id="partial-downgrade-books" type="radio" name="downgrade-type-books" value="partial" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
                                     <div class="ml-4">
-                                        <!-- REDUCED: Text size and font weight for h4 -->
                                         <h4 class="font-medium text-gray-800">Partial Downgrade</h4>
-                                        <!-- REDUCED: Text size for p -->
                                         <p class="text-xs text-gray-500 mt-1">Select specific features to downgrade</p>
                                     </div>
                                 </label>
@@ -315,12 +277,9 @@
 
                     <!-- Account Transactions Section with checkboxes for Books -->
                     <div id="account-transactions-books" class="space-y-3 hidden">
-                        <!-- REDUCED: Font size from text-lg to text-base -->
                         <h3 id="transactions-header-books" class="text-base font-bold text-gray-800">Account Transactions</h3>
-                        <!-- REDUCED: Padding from p-4 to p-3 -->
                         <div class="bg-white p-3 rounded-xl shadow-inner border border-gray-200 text-sm">
                             <!-- UPDATED Transaction item 1 (wrapped in a label) -->
-                            <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                             <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                                 <div class="flex items-center">
                                     <input type="checkbox" data-value="250" class="form-checkbox h-5 w-5 text-blue-600 rounded">
@@ -332,7 +291,6 @@
                                 <p class="font-bold">$250</p>
                             </label>
                             <!-- UPDATED Transaction item 2 (wrapped in a label) -->
-                            <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                             <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                                 <div class="flex items-center">
                                     <input type="checkbox" data-value="100" class="form-checkbox h-5 w-5 text-blue-600 rounded">
@@ -344,7 +302,6 @@
                                 <p class="font-bold">$100</p>
                             </label>
                             <!-- UPDATED Transaction item 3 (wrapped in a label) -->
-                            <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                             <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                                 <div class="flex items-center">
                                     <input type="checkbox" data-value="50" class="form-checkbox h-5 w-5 text-blue-600 rounded">
@@ -358,7 +315,6 @@
                             <!-- Selected Total -->
                             <div class="flex justify-between items-center text-gray-900 border-t border-gray-200 pt-2 mt-2">
                                 <p class="font-bold">Selected Total</p>
-                                <!-- REDUCED: Font size from text-xl to text-lg -->
                                 <p id="selected-total-amount-books" class="font-bold text-lg">$0</p>
                             </div>
                         </div>
@@ -366,18 +322,12 @@
                 </div>
 
                 <!-- Action Buttons for Step 1 -->
-                <!-- ADDED: The new custom downgrade button and styling adjustments -->
                 <div id="step-1-buttons" class="flex justify-between items-center pt-2">
-                    <!-- REDUCED: Padding from px-8 py-3 to px-6 py-2 -->
                     <button id="back-button-1" class="px-6 py-2 bg-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-300 transition-colors duration-200 ease-in-out shadow-md text-sm">
                         Back
                     </button>
-                    <div class="flex space-x-3">
-                        <!-- NEW BUTTON: Custom Downgrade -->
-                        <button id="custom-downgrade-button" disabled class="px-6 py-2 bg-blue-500 text-white font-medium rounded-xl hover:bg-blue-600 transition-colors duration-200 ease-in-out shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed text-sm">
-                            Custom Downgrade
-                        </button>
-                        <!-- REDUCED: Padding from px-8 py-3 to px-6 py-2 -->
+                    <!-- UPDATED: Removed the Custom Downgrade button, changed flex to justify-end -->
+                    <div class="flex justify-end space-x-3">
                         <button id="proceed-button" disabled class="px-6 py-2 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-700 transition-colors duration-200 ease-in-out shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed text-sm">
                             Proceed with Downgrade
                         </button>
@@ -391,7 +341,6 @@
             <!-- Red alert message for Step 2 - always visible in this step -->
             <div id="step-2-red-message" class="bg-red-50 border-l-4 border-red-400 text-red-700 p-3 rounded-lg" role="alert">
                 <div class="flex items-center">
-                    <!-- REDUCED: Icon size from h-6 w-6 to h-5 w-5 -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -402,11 +351,9 @@
                 </div>
             </div>
             
-            <!-- REDUCED: Padding from p-8 to p-6 -->
             <div class="bg-white rounded-3xl shadow-xl p-6 space-y-4 mt-6">
                 <!-- Refund Calculation Header -->
                 <div>
-                    <!-- REDUCED: Font size from text-xl to text-lg -->
                     <h2 class="text-lg font-bold text-gray-800">Refund Calculation</h2>
                     <p class="text-gray-500 mt-1 text-sm">Review refund eligibility and process</p>
                 </div>
@@ -414,17 +361,14 @@
                 <!-- Disabled Customer Email Input -->
                 <div>
                     <label for="customer-email-step-2" class="block text-sm font-medium text-gray-700 mb-1">Customer Email</label>
-                    <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                     <input type="email" id="customer-email-step-2" value="customer@example.com" disabled class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed text-sm">
                 </div>
 
                 <!-- Disabled Select Service Dropdown -->
                 <div>
                     <label for="service-step-2" class="block text-sm font-medium text-gray-700 mb-1">Select Service</label>
-                    <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                     <button id="service-step-2" disabled class="custom-select-btn w-full flex items-center justify-between px-3 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed text-sm">
                         <span>Zoho CRM Enterprise (Annual)</span>
-                        <!-- REDUCED: Icon size from h-5 w-5 to h-4 w-4 -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
@@ -434,10 +378,8 @@
                 <!-- Disabled Select Portal Dropdown -->
                 <div>
                     <label for="portal-step-2" class="block text-sm font-medium text-gray-700 mb-1">Select Portal</label>
-                    <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                     <button id="portal-step-2" disabled class="custom-select-btn w-full flex items-center justify-between px-3 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed text-sm">
                         <span>CRM-12345</span>
-                        <!-- REDUCED: Icon size from h-5 w-5 to h-4 w-4 -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
@@ -447,14 +389,12 @@
                 <!-- Disabled Zoho Unique ID (ZUID) Input -->
                 <div>
                     <label for="zuid-step-2" class="block text-sm font-medium text-gray-700 mb-1">Zoho Unique ID (ZUID)</label>
-                    <!-- REDUCED: Padding from px-4 py-3 to px-3 py-2 -->
                     <input type="text" id="zuid-step-2" value="ZUID-0001" disabled class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed text-sm">
                 </div>
 
                 <!-- Account Inactive Alert Message -->
                 <div id="account-inactive-message" class="bg-red-50 border-l-4 border-red-400 text-red-700 p-3 rounded-lg" role="alert">
                     <div class="flex items-center">
-                        <!-- REDUCED: Icon size from h-6 w-6 to h-5 w-5 -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -467,14 +407,11 @@
 
                 <!-- Action Buttons for Step 2 with new "Extend Days" button -->
                 <div class="pt-2 flex justify-between">
-                    <!-- REDUCED: Padding from px-8 py-3 to px-6 py-2 -->
                     <button id="back-to-downgrade-button" class="px-6 py-2 bg-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-300 transition-colors duration-200 ease-in-out shadow-md text-sm">
                         Back to Downgrade
                     </button>
                     <!-- NEW: Extend Days button and icon -->
-                    <!-- REDUCED: Padding from px-8 py-3 to px-6 py-2 -->
                     <button id="extend-days-button" class="px-6 py-2 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-700 transition-colors duration-200 ease-in-out shadow-md flex items-center space-x-2 text-sm">
-                        <!-- REDUCED: Icon size from h-5 w-5 to h-4 w-4 -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M7 11h.01M11 11h.01M15 11h.01M17 11h.01M7 15h.01M11 15h.01M15 15h.01M17 15h.01M3 21h18a2 2 0 002-2V8a2 2 0 00-2-2H3a2 2 0 00-2 2v11a2 2 0 002 2z" />
                         </svg>
@@ -485,11 +422,9 @@
         </div>
 
         <!-- Refund Policy Summary -->
-        <!-- REDUCED: Padding from p-6 to p-5 -->
         <div class="bg-blue-50 rounded-2xl p-5 border border-blue-200 mt-6">
-            <!-- REDUCED: Font size from text-lg to text-base -->
-            <h3 class="text-base font-bold text-gray-800 mb-3">Refund Policy Summary</h3>
-            <ul class="policy-list text-gray-700 text-sm md:text-base">
+            <h3 class="text-sm font-bold text-gray-800 mb-3">Refund Policy Summary</h3>
+            <ul class="policy-list text-xs md:text-sm text-gray-700">
                 <li>Monthly subscriptions: Full refund within first 30 days</li>
                 <li>Annual subscriptions: Full refund within first 45 days</li>
                 <li>Grace period: Additional 5 days (monthly) or 15 days (annual) after renewal</li>
@@ -500,31 +435,24 @@
     </div>
 
     <!-- Pop-up Modal for Extending Days - Initially Hidden -->
-    <!-- The modal has been updated to match the screenshot -->
     <div id="extend-days-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center p-4 hidden">
         <!-- Modal content -->
-        <!-- REDUCED: Padding from p-8 to p-6 -->
         <div class="bg-white p-6 rounded-xl shadow-2xl max-w-md w-full relative">
             <div class="flex justify-between items-center mb-4">
-                <!-- UPDATED: Modal title with a calendar icon -->
                 <div class="flex items-center space-x-2">
-                    <!-- REDUCED: Icon size from h-6 w-6 to h-5 w-5 -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M7 11h.01M11 11h.01M15 11h.01M17 11h.01M7 15h.01M11 15h.01M15 15h.01M17 15h.01M3 21h18a2 2 0 002-2V8a2 2 0 00-2-2H3a2 2 0 00-2 2v11a2 2 0 002 2z" />
                     </svg>
-                    <!-- REDUCED: Font size from text-xl to text-lg -->
                     <h3 class="text-lg font-bold text-gray-800">Confirm Subscription Extension</h3>
                 </div>
                 <!-- Close button for the modal -->
                 <button id="close-modal-button" class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <!-- REDUCED: Icon size from h-6 w-6 to h-5 w-5 -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
 
-            <!-- UPDATED: Modal content matching the screenshot data -->
             <div class="space-y-3 my-4 text-gray-700 text-sm">
                 <div class="flex justify-between">
                     <span>Credit Amount:</span>
@@ -544,21 +472,16 @@
                 </div>
             </div>
 
-            <!-- UPDATED: Blue info message box -->
-            <!-- REDUCED: Padding from p-4 to p-3 -->
             <div class="bg-blue-50 border-l-4 border-blue-400 text-blue-700 p-3 rounded-lg my-4" role="alert">
                 <p class="text-sm">
                     Your subscription will be extended by -541 days based on the prorated credit of $-2,705.
                 </p>
             </div>
 
-            <!-- UPDATED: Action buttons -->
             <div class="flex justify-end space-x-3">
-                <!-- REDUCED: Padding from px-6 py-2 to px-4 py-2 -->
                 <button id="cancel-extend-button" class="px-4 py-2 bg-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-300 transition-colors text-sm">
                     Cancel
                 </button>
-                <!-- REDUCED: Padding from px-6 py-2 to px-4 py-2 -->
                 <button id="confirm-extension-button" class="px-4 py-2 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-700 transition-colors text-sm">
                     Confirm Extension
                 </button>
