@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoho Refund Portal</title>
+    <!-- Tailwind CSS is used for responsive and modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="p-8 md:p-12">
+    <!-- Main container for the entire portal page -->
+    <div class="max-w-4xl mx-auto space-y-8">
+        
+        <!-- Header Section -->
+        <header class="flex justify-center items-center relative">
+            <h1 class="text-3xl font-bold text-gray-800 text-center">Zoho Refund Portal</h1>
+            <!-- Refresh button with a new icon and hover animation -->
+            <button id="refresh-button" class="absolute right-0 top-1/2 -translate-y-1/2 p-2 rounded-full text-gray-500 hover:text-blue-600 hover:bg-gray-200 transition-colors duration-200 ease-in-out">
+                <!-- NEW SVG for a cleaner, more modern refresh icon (circular arrow) -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.836 10H19v-5m-1.956-6.44l-3.333 3.333M6.511 6.511L9.844 9.844M12 20a8 8 0 100-16 8 8 0 000 16z" />
+                </svg>
+            </button>
+        </header>
+
+        <!-- Step Navigation -->
+        <div class="flex justify-center">
+            <div class="inline-flex rounded-lg bg-white p-1 shadow-md">
+                <!-- Step 1 button with a checkmark for completion -->
+                <button id="step-1" class="step-button flex items-center px-6 py-2 font-medium rounded-lg transition-colors duration-200 ease-in-out active">
+                    <!-- Icon SVG for the checkmark -->
+                    <svg id="step-1-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Step 1: Account Downgrade
+                </button>
+                <!-- Step 2 button -->
+                <button id="step-2" class="step-button px-6 py-2 text-gray-500 font-medium rounded-lg transition-colors duration-200 ease-in-out">
+                    Step 2: Refund Calculation
+                </button>
+            </div>
+        </div>
+
+        <!-- Section for Step 1 content - this is the main downgrade form -->
+        <div id="step-1-content">
+            <!-- Account Downgrade Form Card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 space-y-6">
+                <!-- Red alert message - initially hidden -->
+                <div id="red-message" class="bg-red-50 border-l-4 border-red-400 text-red-700 p-4 rounded-lg hidden" role="alert">
+                    <div class="flex items-center">
+                        <!-- Icon for the alert message -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                            <p class="font-bold">Not eligible for refund</p>
+                            <p class="text-sm">No refund available as subscription period has ended</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Header -->
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800">Account Downgrade</h2>
+                    <p class="text-gray-500 mt-1">First, select the service and downgrade type</p>
+                </div>
+
+                <!-- Customer Email Input -->
+                <div>
+                    <label for="customer-email" class="block text-sm font-medium text-gray-700 mb-1">Customer Email</label>
+                    <input type="email" id="customer-email" placeholder="customer@example.com" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Select Service Custom Dropdown -->
+                <div>
+                    <label for="custom-select-button" class="block text-sm font-medium text-gray-700 mb-1">Select Service</label>
+                    <!-- Container for the custom dropdown -->
+                    <div class="relative">
+                        <!-- The visible button/input for the dropdown -->
+                        <button id="custom-select-button" class="custom-select-btn w-full flex items-center justify-between px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-500 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-150 ease-in-out">
+                            <span id="selected-option-text">Choose a service</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <!-- The actual dropdown menu which will be shown/hidden -->
+                        <div id="custom-select-dropdown" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-max">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="crm">Zoho CRM Enterprise (Annual)</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="books">Zoho Books Professional (Monthly)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New fields to be shown only when 'Zoho CRM Enterprise' is selected -->
+                <div id="crm-fields" class="space-y-6 hidden">
+                    <!-- Select Portal Dropdown -->
+                    <div>
+                        <label for="portal-select-button" class="block text-sm font-medium text-gray-700 mb-1">Select Portal</label>
+                        <div class="relative">
+                            <button id="portal-select-button-crm" class="custom-select-btn w-full flex items-center justify-between px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-500 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-150 ease-in-out">
+                                <span id="selected-portal-text-crm">Select a portal</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="portal-select-dropdown-crm" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-max">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="crm-12345">CRM - 12345</a>
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="crm-67890">CRM - 67890</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zoho Unique ID (ZUID) Input -->
+                    <div>
+                        <label for="zuid-input-crm" class="block text-sm font-medium text-gray-700 mb-1">Zoho Unique ID (ZUID)</label>
+                        <input type="text" id="zuid-input-crm" placeholder="ZUID-0001" value="ZUID-0001" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <!-- Green message - only shown with CRM fields -->
+                    <div id="green-message-crm" class="bg-green-50 border-l-4 border-green-400 text-green-700 p-4 rounded-lg hidden">
+                        <div class="flex items-center">
+                            <!-- Icon for the success message -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-bold">Account is Active</p>
+                                <p class="text-sm">Please downgrade this account to process any refund.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Downgrade options - initially hidden -->
+                    <div id="downgrade-options-crm" class="space-y-4 hidden">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Select Downgrade Type</label>
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <!-- Complete Downgrade Option Card -->
+                                <label class="downgrade-option flex-1 flex items-center p-4 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
+                                    <input id="complete-downgrade-crm" type="radio" name="downgrade-type-crm" value="complete" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
+                                    <div class="ml-4">
+                                        <h4 class="font-bold text-gray-800">Complete Downgrade</h4>
+                                        <p class="text-sm text-gray-500 mt-1">Downgrade entire account to free plan</p>
+                                    </div>
+                                </label>
+
+                                <!-- Partial Downgrade Option Card -->
+                                <label class="downgrade-option flex-1 flex items-center p-4 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
+                                    <input id="partial-downgrade-crm" type="radio" name="downgrade-type-crm" value="partial" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
+                                    <div class="ml-4">
+                                        <h4 class="font-bold text-gray-800">Partial Downgrade</h4>
+                                        <p class="text-sm text-gray-500 mt-1">Select specific features to downgrade</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Transactions Section with checkboxes - hidden by default -->
+                    <div id="account-transactions-crm" class="space-y-4 hidden">
+                        <h3 id="transactions-header-crm" class="text-lg font-bold text-gray-800">Account Transactions</h3>
+                        <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200">
+                            <!-- Transaction item 1 (wrapped in a label) -->
+                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-3 mb-3 border-b border-gray-200 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div class="flex items-center">
+                                    <input type="checkbox" data-value="3500" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                    <div class="ml-4">
+                                        <p class="font-medium">Annual Subscription</p>
+                                        <p class="text-sm text-gray-500">Jun 15, 2023</p>
+                                    </div>
+                                </div>
+                                <p class="font-bold">$3,500</p>
+                            </label>
+                            <!-- Transaction item 2 (wrapped in a label) -->
+                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-3 mb-3 border-b border-gray-200 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div class="flex items-center">
+                                    <input type="checkbox" data-value="500" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                    <div class="ml-4">
+                                        <p class="font-medium">User Pack (5)</p>
+                                        <p class="text-sm text-gray-500">Jul 15, 2023</p>
+                                    </div>
+                                </div>
+                                <p class="font-bold">$500</p>
+                            </label>
+                            <!-- Transaction item 3 (wrapped in a label) -->
+                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-3 mb-3 border-b border-gray-200 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div class="flex items-center">
+                                    <input type="checkbox" data-value="300" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                    <div class="ml-4">
+                                        <p class="font-medium">Storage Upgrade</p>
+                                        <p class="text-sm text-gray-500">Aug 10, 2023</p>
+                                    </div>
+                                </div>
+                                <p class="font-bold">$300</p>
+                            </label>
+                            <!-- Transaction item 4 (wrapped in a label) -->
+                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div class="flex items-center">
+                                    <input type="checkbox" data-value="700" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                    <div class="ml-4">
+                                        <p class="font-medium">Advanced Analytics</p>
+                                        <p class="text-sm text-gray-500">Sep 1, 2023</p>
+                                    </div>
+                                </div>
+                                <p class="font-bold">$700</p>
+                            </label>
+                            <!-- Selected Total -->
+                            <div class="flex justify-between items-center text-gray-900 border-t border-gray-200 pt-3 mt-3">
+                                <p class="font-bold">Selected Total</p>
+                                <p id="selected-total-amount-crm" class="font-bold text-xl">$0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fields for Zoho Books Professional (Monthly) -->
+                <div id="books-fields" class="space-y-6 hidden">
+                    <!-- Select Portal Dropdown -->
+                    <div>
+                        <label for="portal-select-button-books" class="block text-sm font-medium text-gray-700 mb-1">Select Portal</label>
+                        <div class="relative">
+                            <button id="portal-select-button-books" class="custom-select-btn w-full flex items-center justify-between px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-500 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-150 ease-in-out">
+                                <span id="selected-portal-text-books">Select a portal</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="portal-select-dropdown-books" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-max">
+                                <!-- Only one option for the Books portal -->
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="books-54321">Books- 54321</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zoho Unique ID (ZUID) Input -->
+                    <div>
+                        <label for="zuid-input-books" class="block text-sm font-medium text-gray-700 mb-1">Zoho Unique ID (ZUID)</label>
+                        <input type="text" id="zuid-input-books" placeholder="ZUID-0002" value="ZUID-0002" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <!-- Green message for Books -->
+                    <div id="green-message-books" class="bg-green-50 border-l-4 border-green-400 text-green-700 p-4 rounded-lg hidden">
+                        <div class="flex items-center">
+                            <!-- Icon for the success message -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-bold">Account is Active</p>
+                                <p class="text-sm">Please downgrade this account to process any refund.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Downgrade options for Books -->
+                    <div id="downgrade-options-books" class="space-y-4 hidden">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Select Downgrade Type</label>
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <!-- Complete Downgrade Option Card -->
+                                <label class="downgrade-option flex-1 flex items-center p-4 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
+                                    <input id="complete-downgrade-books" type="radio" name="downgrade-type-books" value="complete" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
+                                    <div class="ml-4">
+                                        <h4 class="font-bold text-gray-800">Complete Downgrade</h4>
+                                        <p class="text-sm text-gray-500 mt-1">Downgrade entire account to free plan</p>
+                                    </div>
+                                </label>
+
+                                <!-- Partial Downgrade Option Card -->
+                                <label class="downgrade-option flex-1 flex items-center p-4 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
+                                    <input id="partial-downgrade-books" type="radio" name="downgrade-type-books" value="partial" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
+                                    <div class="ml-4">
+                                        <h4 class="font-bold text-gray-800">Partial Downgrade</h4>
+                                        <p class="text-sm text-gray-500 mt-1">Select specific features to downgrade</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Transactions Section with checkboxes for Books -->
+                    <div id="account-transactions-books" class="space-y-4 hidden">
+                        <h3 id="transactions-header-books" class="text-lg font-bold text-gray-800">Account Transactions</h3>
+                        <div class="bg-white p-4 rounded-xl shadow-inner border border-gray-200">
+                            <!-- Transaction item 1 (wrapped in a label) -->
+                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-3 mb-3 border-b border-gray-200 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div class="flex items-center">
+                                    <input type="checkbox" data-value="250" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                    <div class="ml-4">
+                                        <p class="font-medium">Monthly Subscription</p>
+                                        <p class="text-sm text-gray-500">Oct 1, 2023</p>
+                                    </div>
+                                </div>
+                                <p class="font-bold">$250</p>
+                            </label>
+                            <!-- Transaction item 2 (wrapped in a label) -->
+                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-3 mb-3 border-b border-gray-200 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div class="flex items-center">
+                                    <input type="checkbox" data-value="100" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                    <div class="ml-4">
+                                        <p class="font-medium">Payroll Add-on</p>
+                                        <p class="text-sm text-gray-500">Nov 1, 2023</p>
+                                    </div>
+                                </div>
+                                <p class="font-bold">$100</p>
+                            </label>
+                            <!-- Transaction item 3 (wrapped in a label) -->
+                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-3 mb-3 border-b border-gray-200 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div class="flex items-center">
+                                    <input type="checkbox" data-value="50" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                    <div class="ml-4">
+                                        <p class="font-medium">Tax Module</p>
+                                        <p class="text-sm text-gray-500">Dec 1, 2023</p>
+                                    </div>
+                                </div>
+                                <p class="font-bold">$50</p>
+                            </label>
+                            <!-- Selected Total -->
+                            <div class="flex justify-between items-center text-gray-900 border-t border-gray-200 pt-3 mt-3">
+                                <p class="font-bold">Selected Total</p>
+                                <p id="selected-total-amount-books" class="font-bold text-xl">$0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons for Step 1 -->
+                <div id="step-1-buttons" class="flex justify-between items-center pt-4">
+                    <button id="back-button-1" class="px-8 py-3 bg-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-300 transition-colors duration-200 ease-in-out shadow-md">
+                        Back
+                    </button>
+                    <button id="proceed-button" class="px-8 py-3 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-700 transition-colors duration-200 ease-in-out shadow-md">
+                        Proceed with Downgrade
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section for Step 2 content - initially hidden -->
+        <div id="step-2-content" class="hidden">
+            <!-- Red alert message for Step 2 - always visible in this step -->
+            <div id="step-2-red-message" class="bg-red-50 border-l-4 border-red-400 text-red-700 p-4 rounded-lg" role="alert">
+                <div class="flex items-center">
+                    <!-- Icon for the alert message -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div>
+                        <p class="font-bold">Not eligible for refund</p>
+                        <p class="text-sm">No refund available as subscription period has ended</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl shadow-xl p-8 space-y-6 mt-8">
+                <!-- Refund Calculation Header -->
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800">Refund Calculation</h2>
+                    <p class="text-gray-500 mt-1">Review refund eligibility and process</p>
+                </div>
+
+                <!-- Disabled Customer Email Input -->
+                <div>
+                    <label for="customer-email-step-2" class="block text-sm font-medium text-gray-700 mb-1">Customer Email</label>
+                    <input type="email" id="customer-email-step-2" value="customer@example.com" disabled class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed">
+                </div>
+
+                <!-- Disabled Select Service Dropdown -->
+                <div>
+                    <label for="service-step-2" class="block text-sm font-medium text-gray-700 mb-1">Select Service</label>
+                    <button id="service-step-2" disabled class="custom-select-btn w-full flex items-center justify-between px-4 py-3 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed">
+                        <span>Zoho CRM Enterprise (Annual)</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Disabled Select Portal Dropdown -->
+                <div>
+                    <label for="portal-step-2" class="block text-sm font-medium text-gray-700 mb-1">Select Portal</label>
+                    <button id="portal-step-2" disabled class="custom-select-btn w-full flex items-center justify-between px-4 py-3 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed">
+                        <span>CRM-12345</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Disabled Zoho Unique ID (ZUID) Input -->
+                <div>
+                    <label for="zuid-step-2" class="block text-sm font-medium text-gray-700 mb-1">Zoho Unique ID (ZUID)</label>
+                    <input type="text" id="zuid-step-2" value="ZUID-0001" disabled class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed">
+                </div>
+
+                <!-- Account Inactive Alert Message -->
+                <div id="account-inactive-message" class="bg-red-50 border-l-4 border-red-400 text-red-700 p-4 rounded-lg" role="alert">
+                    <div class="flex items-center">
+                        <!-- Icon for the alert message -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                            <p class="font-bold">Account is Inactive</p>
+                            <p class="text-sm">This account has been successfully downgraded.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons for Step 2 with new "Extend Days" button -->
+                <div class="pt-4 flex justify-between">
+                    <button id="back-to-downgrade-button" class="px-8 py-3 bg-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-300 transition-colors duration-200 ease-in-out shadow-md">
+                        Back to Downgrade
+                    </button>
+                    <!-- NEW: Extend Days button and icon -->
+                    <button id="extend-days-button" class="px-8 py-3 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-700 transition-colors duration-200 ease-in-out shadow-md flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M7 11h.01M11 11h.01M15 11h.01M17 11h.01M7 15h.01M11 15h.01M15 15h.01M17 15h.01M3 21h18a2 2 0 002-2V8a2 2 0 00-2-2H3a2 2 0 00-2 2v11a2 2 0 002 2z" />
+                        </svg>
+                        <span>Extend Days</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Refund Policy Summary -->
+        <div class="bg-blue-50 rounded-2xl p-6 border border-blue-200 mt-8">
+            <h3 class="text-lg font-bold text-gray-800 mb-3">Refund Policy Summary</h3>
+            <ul class="policy-list text-gray-700 text-sm md:text-base">
+                <li>Monthly subscriptions: Full refund within first 30 days</li>
+                <li>Annual subscriptions: Full refund within first 45 days</li>
+                <li>Grace period: Additional 5 days (monthly) or 15 days (annual) after renewal</li>
+                <li>Prorated refunds available for functional issues after initial periods</li>
+                <li>Partial downgrades convert to subscription extensions</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Pop-up Modal for Extending Days - Initially Hidden -->
+    <div id="extend-days-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center p-4 hidden">
+        <!-- Modal content -->
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full relative">
+            <div class="flex justify-between items-center mb-4">
+                <!-- Modal title with a calendar icon -->
+                <div class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M7 11h.01M11 11h.01M15 11h.01M17 11h.01M7 15h.01M11 15h.01M15 15h.01M17 15h.01M3 21h18a2 2 0 002-2V8a2 2 0 00-2-2H3a2 2 0 00-2 2v11a2 2 0 002 2z" />
+                    </svg>
+                    <h3 class="text-xl font-bold text-gray-800">Confirm Subscription Extension</h3>
+                </div>
+                <!-- Close button for the modal -->
+                <button id="close-modal-button" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal content matching the screenshot data -->
+            <div class="space-y-4 my-6 text-gray-700">
+                <div class="flex justify-between">
+                    <span>Credit Amount:</span>
+                    <span class="font-bold text-green-600">$-2,705</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Original End Date:</span>
+                    <span class="font-bold">Oct 31, 2023</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>New End Date:</span>
+                    <span class="font-bold text-blue-600">Oct 31, 2023</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Days Extended:</span>
+                    <span class="font-bold">-541 days</span>
+                </div>
+            </div>
+
+            <!-- Blue info message box -->
+            <div class="bg-blue-50 border-l-4 border-blue-400 text-blue-700 p-4 rounded-lg my-6" role="alert">
+                <p class="text-sm">
+                    Your subscription will be extended by -541 days based on the prorated credit of $-2,705.
+                </p>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex justify-end space-x-3">
+                <button id="cancel-extend-button" class="px-6 py-2 bg-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-300 transition-colors">
+                    Cancel
+                </button>
+                <button id="confirm-extension-button" class="px-6 py-2 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-700 transition-colors">
+                    Confirm Extension
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Link to your custom JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
