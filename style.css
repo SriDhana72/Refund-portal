@@ -1,10 +1,7 @@
-/* Custom styles for the page to match the screenshot */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f1f5f9; /* A light blue-gray background */
+    background-color: #f1f5f9;
 }
-
-/* Custom styling for the select dropdown to match the screenshot */
 .custom-select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -15,67 +12,51 @@ body {
     background-size: 1em;
     padding-right: 2.5rem;
 }
-
-/* Styling for the bullet points in the policy summary */
 .policy-list li {
     position: relative;
     padding-left: 1.5rem;
     margin-bottom: 0.5rem;
 }
-
 .policy-list li::before {
-    content: '•'; /* Bullet point character */
-    color: #3b82f6; /* Blue color for the bullet */
+    content: '•';
+    color: #3b82f6;
     font-size: 1.25rem;
     position: absolute;
     left: 0;
     top: -0.1rem;
 }
-
-/* Active step styling */
 .step-button.active {
-    background-color: #111827; /* Black color for the active button */
+    background-color: #111827;
     color: white;
     box-shadow: 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
-
-/* Styling for the downgrade option cards */
 .downgrade-option {
     transition: all 0.2s ease-in-out;
     cursor: pointer;
 }
-
 .downgrade-option.active, .downgrade-option:has(input:checked) {
-    border-color: #3b82f6; /* Blue border for active state */
-    background-color: #eff6ff; /* Light blue background for active state */
+    border-color: #3b82f6;
+    background-color: #eff6ff;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
-
-/* Styling for the individual feature cards */
 .downgrade-feature-option {
     transition: all 0.2s ease-in-out;
 }
-
-/* Active styling for the feature cards when checked */
 .downgrade-feature-option.active, .downgrade-feature-option:has(input:checked) {
     border-color: #3b82f6;
     background-color: #eff6ff;
 }
-
-/* Keyframes for a smooth spin animation */
 @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
-
-/* Apply the spin animation on hover for the refresh button */
-#refresh-button svg {
-    transition: transform 0.5s ease-in-out;
+#refresh-button:hover span {
+    display: inline-block;
+    animation: spin 0.5s linear;
 }
-#refresh-button:hover svg {
-    transform: rotate(360deg);
+.tab-button.active {
+    background-color: #eef2ff;
+    border-bottom-color: #3b82f6;
+    color: #1e3a8a;
+    font-weight: 600;
 }

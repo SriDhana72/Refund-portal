@@ -10,41 +10,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="p-6 md:p-10">
-    <!-- Main container for the entire portal page -->
     <div class="max-w-4xl mx-auto space-y-6">
         
-        <!-- Header Section -->
         <header class="flex justify-center items-center relative">
-            <h1 class="text-2xl font-bold text-gray-800 text-center">Zoho Refund Portal</h1>
-            <button id="refresh-button" class="absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded-full text-gray-500 hover:text-blue-600 hover:bg-gray-200 transition-colors duration-200 ease-in-out">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.836 10H19v-5m-1.956-6.44l-3.333 3.333M6.511 6.511L9.844 9.844M12 20a8 8 0 100-16 8 8 0 000 16z" />
-                </svg>
+            <h1 class="text-2xl font-bold text-blue-900 text-center">Zoho Refund Portal</h1>
+            <button id="refresh-button" class="absolute left-0 top-1/2 -translate-y-1/2 p-2 rounded-full text-gray-500 hover:text-blue-600 hover:bg-gray-200 transition-colors duration-200 ease-in-out">
+                <span class="text-2xl">🔄</span>
             </button>
         </header>
 
-        <!-- Step Navigation -->
         <div class="flex justify-center">
             <div class="inline-flex rounded-lg bg-white p-1 shadow-md">
-                <!-- Step 1 button with a checkmark for completion -->
                 <button id="step-1" class="step-button flex items-center px-4 py-2 font-medium rounded-lg transition-colors duration-200 ease-in-out active">
                     <svg id="step-1-icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                     Step 1: Account Downgrade
                 </button>
-                <!-- Step 2 button -->
                 <button id="step-2" class="step-button px-4 py-2 text-gray-500 font-medium rounded-lg transition-colors duration-200 ease-in-out">
                     Step 2: Refund Calculation
                 </button>
             </div>
         </div>
 
-        <!-- Section for Step 1 content - this is the main downgrade form -->
         <div id="step-1-content">
-            <!-- Account Downgrade Form Card -->
             <div class="bg-white rounded-3xl shadow-xl p-6 space-y-4">
-                <!-- Red alert message - initially hidden -->
                 <div id="red-message" class="bg-red-50 border-l-4 border-red-400 text-red-700 p-3 rounded-lg hidden" role="alert">
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,41 +47,33 @@
                     </div>
                 </div>
 
-                <!-- Form Header -->
                 <div>
                     <h2 class="text-lg font-bold text-gray-800">Account Downgrade</h2>
                     <p class="text-gray-500 mt-1 text-sm">First, select the service and downgrade type</p>
                 </div>
 
-                <!-- Customer Email Input -->
                 <div>
                     <label for="customer-email" class="block text-sm font-medium text-gray-700 mb-1">Customer Email</label>
                     <input type="email" id="customer-email" placeholder="customer@example.com" class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
                 </div>
 
-                <!-- Select Service Custom Dropdown -->
                 <div>
                     <label for="custom-select-button" class="block text-sm font-medium text-gray-700 mb-1">Select Service</label>
-                    <!-- Container for the custom dropdown -->
                     <div class="relative">
-                        <!-- The visible button/input for the dropdown -->
                         <button id="custom-select-button" class="custom-select-btn w-full flex items-center justify-between px-3 py-2 rounded-xl border border-gray-300 bg-white text-gray-500 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-150 ease-in-out text-sm">
                             <span id="selected-option-text">Choose a service</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
                         </button>
-                        <!-- The actual dropdown menu which will be shown/hidden -->
-                        <div id="custom-select-dropdown" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-max text-sm">
+                        <div id="custom-select-dropdown" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-full text-sm">
                             <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="crm">Zoho CRM Enterprise (Annual)</a>
                             <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="books">Zoho Books Professional (Monthly)</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- New fields to be shown only when 'Zoho CRM Enterprise' is selected -->
                 <div id="crm-fields" class="space-y-4 hidden">
-                    <!-- Select Portal Dropdown -->
                     <div>
                         <label for="portal-select-button-crm" class="block text-sm font-medium text-gray-700 mb-1">Select Portal</label>
                         <div class="relative">
@@ -101,20 +83,19 @@
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
                         </button>
-                            <div id="portal-select-dropdown-crm" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-max text-sm">
+                            <div id="portal-select-dropdown-crm" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-full text-sm">
                                 <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="crm-12345">CRM - 12345</a>
                                 <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="crm-67890">CRM - 67890</a>
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="crm-98765">CRM - 98765</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Zoho Unique ID (ZUID) Input -->
                     <div>
                         <label for="zuid-input-crm" class="block text-sm font-medium text-gray-700 mb-1">Zoho Unique ID (ZUID)</label>
                         <input type="text" id="zuid-input-crm" placeholder="ZUID-0001" value="ZUID-0001" class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
                     </div>
 
-                    <!-- Green message - only shown with CRM fields -->
                     <div id="green-message-crm" class="bg-green-50 border-l-4 border-green-400 text-green-700 p-3 rounded-lg hidden">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -127,13 +108,11 @@
                         </div>
                     </div>
                     
-                    <!-- Downgrade options - initially hidden -->
                     <div id="downgrade-options-crm" class="space-y-3 hidden">
                         <h3 class="text-base font-bold text-gray-800">Custom Downgrade</h3>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Select Downgrade Type</label>
                             <div class="flex flex-col md:flex-row gap-4">
-                                <!-- Complete Downgrade Option Card -->
                                 <label class="downgrade-option flex-1 flex items-center p-3 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
                                     <input id="complete-downgrade-crm" type="radio" name="downgrade-type-crm" value="complete" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
                                     <div class="ml-4">
@@ -141,8 +120,6 @@
                                         <p class="text-xs text-gray-500 mt-1">Downgrade entire account to free plan</p>
                                     </div>
                                 </label>
-
-                                <!-- Partial Downgrade Option Card -->
                                 <label class="downgrade-option flex-1 flex items-center p-3 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
                                     <input id="partial-downgrade-crm" type="radio" name="downgrade-type-crm" value="partial" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
                                     <div class="ml-4">
@@ -154,55 +131,186 @@
                         </div>
                     </div>
 
-                    <!-- Account Transactions Section with checkboxes - hidden by default -->
-                    <div id="account-transactions-crm" class="space-y-3 hidden">
-                        <h3 id="transactions-header-crm" class="text-base font-bold text-gray-800">Account Transactions</h3>
-                        <div class="bg-white p-3 rounded-xl shadow-inner border border-gray-200 text-sm">
-                            <!-- Transaction item 1 (wrapped in a label) -->
-                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
-                                <div class="flex items-center">
-                                    <input type="checkbox" data-value="3500" class="form-checkbox h-5 w-5 text-blue-600 rounded">
-                                    <div class="ml-4">
-                                        <p class="font-medium">Annual Subscription</p>
-                                        <p class="text-xs text-gray-500">Jun 15, 2023</p>
-                                    </div>
+                    <div id="complete-downgrade-list-crm" class="space-y-3 hidden">
+                        <h3 class="text-base font-bold text-gray-800">Transactions to be Canceled</h3>
+                        <div class="bg-white p-3 rounded-xl shadow-inner border border-gray-200 text-sm space-y-2">
+                            <p class="text-gray-600">The following items will be canceled and considered for a refund:</p>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Annual Subscription</p>
+                                    <p class="text-xs text-gray-500">Jan 15, 2024</p>
                                 </div>
-                                <p class="font-bold">$3,500</p>
-                            </label>
-                            <!-- Transaction item 2 (wrapped in a label) -->
-                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
-                                <div class="flex items-center">
-                                    <input type="checkbox" data-value="500" class="form-checkbox h-5 w-5 text-blue-600 rounded">
-                                    <div class="ml-4">
-                                        <p class="font-medium">User Pack (5)</p>
-                                        <p class="text-xs text-gray-500">Jul 15, 2023</p>
-                                    </div>
+                                <span class="font-bold">$3,500</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">User Pack (5)</p>
+                                    <p class="text-xs text-gray-500">Feb 20, 2024</p>
                                 </div>
-                                <p class="font-bold">$500</p>
-                            </label>
-                            <!-- Transaction item 3 (wrapped in a label) -->
-                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
-                                <div class="flex items-center">
-                                    <input type="checkbox" data-value="300" class="form-checkbox h-5 w-5 text-blue-600 rounded">
-                                    <div class="ml-4">
-                                        <p class="font-medium">Storage Upgrade</p>
-                                        <p class="text-xs text-gray-500">Aug 10, 2023</p>
-                                    </div>
+                                <span class="font-bold">$500</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Premium Support Plan</p>
+                                    <p class="text-xs text-gray-500">Mar 10, 2024</p>
                                 </div>
-                                <p class="font-bold">$300</p>
-                            </label>
-                            <!-- Transaction item 4 (wrapped in a label) -->
-                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
-                                <div class="flex items-center">
-                                    <input type="checkbox" data-value="700" class="form-checkbox h-5 w-5 text-blue-600 rounded">
-                                    <div class="ml-4">
-                                        <p class="font-medium">Advanced Analytics</p>
-                                        <p class="text-xs text-gray-500">Sep 1, 2023</p>
-                                    </div>
+                                <span class="font-bold">$800</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Implementation Service</p>
+                                    <p class="text-xs text-gray-500">Apr 05, 2024</p>
                                 </div>
-                                <p class="font-bold">$700</p>
-                            </label>
-                            <!-- Selected Total -->
+                                <span class="font-bold">$1,200</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Storage Upgrade</p>
+                                    <p class="text-xs text-gray-500">May 02, 2024</p>
+                                </div>
+                                <span class="font-bold">$200</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Advanced Analytics</p>
+                                    <p class="text-xs text-gray-500">Jun 01, 2024</p>
+                                </div>
+                                <span class="font-bold">$1,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="partial-downgrade-tabs-crm" class="space-y-3 hidden">
+                        <h3 class="text-base font-bold text-gray-800 mb-3">Select Features to Downgrade</h3>
+                        <div class="flex border-b border-gray-300 overflow-x-auto">
+                            <button class="tab-button active flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="license-crm">License</button>
+                            <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="addons-crm">Add-ons</button>
+                            <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="support-crm">Support</button>
+                            <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="service-crm">Service</button>
+                            <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="training-crm">Training</button>
+                            <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="certification-crm">Certification</button>
+                            <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="training-certification-crm">Training & Certification</button>
+                            <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="enablement-mea-crm">Enablement Service - MEA</button>
+                        </div>
+                        
+                        <div class="bg-white p-3 rounded-b-xl rounded-tr-xl shadow-inner border border-gray-200 text-sm">
+                            <div id="license-crm" class="tab-content">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="3500" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Annual Subscription</p>
+                                            <p class="text-xs text-gray-500">Jan 15, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$3,500</p>
+                                </label>
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="500" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">User Pack (5)</p>
+                                            <p class="text-xs text-gray-500">Feb 20, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$500</p>
+                                </label>
+                            </div>
+                            <div id="addons-crm" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="200" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Storage Upgrade</p>
+                                            <p class="text-xs text-gray-500">Mar 10, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$200</p>
+                                </label>
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="1000" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Advanced Analytics</p>
+                                            <p class="text-xs text-gray-500">Apr 05, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$1,000</p>
+                                </label>
+                            </div>
+                            <div id="support-crm" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="800" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Premium Support Plan</p>
+                                            <p class="text-xs text-gray-500">May 02, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$800</p>
+                                </label>
+                            </div>
+                            <div id="service-crm" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="1200" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Implementation Service</p>
+                                            <p class="text-xs text-gray-500">Jun 01, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$1,200</p>
+                                </label>
+                            </div>
+                            <div id="training-crm" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="300" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Zoho CRM Foundation Training</p>
+                                            <p class="text-xs text-gray-500">Jul 01, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$300</p>
+                                </label>
+                            </div>
+                            <div id="certification-crm" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="150" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Zoho CRM Admin Certification</p>
+                                            <p class="text-xs text-gray-500">Aug 01, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$150</p>
+                                </label>
+                            </div>
+                             <div id="training-certification-crm" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="400" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Advanced Training & Certification Bundle</p>
+                                            <p class="text-xs text-gray-500">Sep 01, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$400</p>
+                                </label>
+                            </div>
+                             <div id="enablement-mea-crm" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="900" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">MEA Region Onboarding Service</p>
+                                            <p class="text-xs text-gray-500">Oct 01, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$900</p>
+                                </label>
+                            </div>
+                            
                             <div class="flex justify-between items-center text-gray-900 border-t border-gray-200 pt-2 mt-2">
                                 <p class="font-bold">Selected Total</p>
                                 <p id="selected-total-amount-crm" class="font-bold text-lg">$0</p>
@@ -211,9 +319,7 @@
                     </div>
                 </div>
 
-                <!-- Fields for Zoho Books Professional (Monthly) -->
                 <div id="books-fields" class="space-y-4 hidden">
-                    <!-- Select Portal Dropdown -->
                     <div>
                         <label for="portal-select-button-books" class="block text-sm font-medium text-gray-700 mb-1">Select Portal</label>
                         <div class="relative">
@@ -223,19 +329,16 @@
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                 </svg>
                             </button>
-                            <div id="portal-select-dropdown-books" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-max text-sm">
-                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="books-54321">Books- 54321</a>
+                            <div id="portal-select-dropdown-books" class="absolute hidden z-10 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl py-1 w-full text-sm">
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="books-54321">Books - 54321</a>
+                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-value="books-11223">Books - 11223</a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Zoho Unique ID (ZUID) Input -->
                     <div>
                         <label for="zuid-input-books" class="block text-sm font-medium text-gray-700 mb-1">Zoho Unique ID (ZUID)</label>
                         <input type="text" id="zuid-input-books" placeholder="ZUID-0002" value="ZUID-0002" class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
                     </div>
-
-                    <!-- Green message for Books -->
                     <div id="green-message-books" class="bg-green-50 border-l-4 border-green-400 text-green-700 p-3 rounded-lg hidden">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -247,14 +350,11 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Downgrade options for Books -->
                     <div id="downgrade-options-books" class="space-y-3 hidden">
                         <h3 class="text-base font-bold text-gray-800">Custom Downgrade</h3>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Select Downgrade Type</label>
                             <div class="flex flex-col md:flex-row gap-4">
-                                <!-- Complete Downgrade Option Card -->
                                 <label class="downgrade-option flex-1 flex items-center p-3 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
                                     <input id="complete-downgrade-books" type="radio" name="downgrade-type-books" value="complete" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
                                     <div class="ml-4">
@@ -262,8 +362,6 @@
                                         <p class="text-xs text-gray-500 mt-1">Downgrade entire account to free plan</p>
                                     </div>
                                 </label>
-
-                                <!-- Partial Downgrade Option Card -->
                                 <label class="downgrade-option flex-1 flex items-center p-3 border border-gray-300 rounded-xl transition-colors duration-150 ease-in-out cursor-pointer hover:border-blue-500 shadow">
                                     <input id="partial-downgrade-books" type="radio" name="downgrade-type-books" value="partial" class="form-radio h-5 w-5 text-blue-600 transition-colors duration-150 ease-in-out focus:ring-blue-500">
                                     <div class="ml-4">
@@ -274,45 +372,191 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Account Transactions Section with checkboxes for Books -->
-                    <div id="account-transactions-books" class="space-y-3 hidden">
-                        <h3 id="transactions-header-books" class="text-base font-bold text-gray-800">Account Transactions</h3>
-                        <div class="bg-white p-3 rounded-xl shadow-inner border border-gray-200 text-sm">
-                            <!-- UPDATED Transaction item 1 (wrapped in a label) -->
-                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
-                                <div class="flex items-center">
-                                    <input type="checkbox" data-value="250" class="form-checkbox h-5 w-5 text-blue-600 rounded">
-                                    <div class="ml-4">
-                                        <p class="font-medium">Monthly Subscription</p>
-                                        <p class="text-xs text-gray-500">Oct 1, 2023</p>
-                                    </div>
+                    <div id="complete-downgrade-list-books" class="space-y-3 hidden">
+                         <h3 class="text-base font-bold text-gray-800">Transactions to be Canceled</h3>
+                        <div class="bg-white p-3 rounded-xl shadow-inner border border-gray-200 text-sm space-y-2">
+                            <p class="text-gray-600">The following items will be canceled and considered for a refund:</p>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Monthly Subscription</p>
+                                    <p class="text-xs text-gray-500">Dec 01, 2023</p>
                                 </div>
-                                <p class="font-bold">$250</p>
-                            </label>
-                            <!-- UPDATED Transaction item 2 (wrapped in a label) -->
-                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
-                                <div class="flex items-center">
-                                    <input type="checkbox" data-value="100" class="form-checkbox h-5 w-5 text-blue-600 rounded">
-                                    <div class="ml-4">
-                                        <p class="font-medium">Payroll Add-on</p>
-                                        <p class="text-xs text-gray-500">Nov 1, 2023</p>
-                                    </div>
+                                <span class="font-bold">$250</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Zoho Books Business (Annual)</p>
+                                    <p class="text-xs text-gray-500">Dec 15, 2023</p>
                                 </div>
-                                <p class="font-bold">$100</p>
-                            </label>
-                            <!-- UPDATED Transaction item 3 (wrapped in a label) -->
-                            <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
-                                <div class="flex items-center">
-                                    <input type="checkbox" data-value="50" class="form-checkbox h-5 w-5 text-blue-600 rounded">
-                                    <div class="ml-4">
-                                        <p class="font-medium">Tax Module</p>
-                                        <p class="text-xs text-gray-500">Dec 1, 2023</p>
-                                    </div>
+                                <span class="font-bold">$300</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Payroll Add-on</p>
+                                    <p class="text-xs text-gray-500">Dec 20, 2023</p>
                                 </div>
-                                <p class="font-bold">$50</p>
-                            </label>
-                            <!-- Selected Total -->
+                                <span class="font-bold">$100</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Priority Support Add-on</p>
+                                    <p class="text-xs text-gray-500">Jan 01, 2024</p>
+                                </div>
+                                <span class="font-bold">$80</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Data Migration Service</p>
+                                    <p class="text-xs text-gray-500">Jan 10, 2024</p>
+                                </div>
+                                <span class="font-bold">$600</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Zoho Books Certified User Course</p>
+                                    <p class="text-xs text-gray-500">Feb 05, 2024</p>
+                                </div>
+                                <span class="font-bold">$200</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Zoho Books Pro Advisor Certification</p>
+                                    <p class="text-xs text-gray-500">Mar 01, 2024</p>
+                                </div>
+                                <span class="font-bold">$120</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">Advanced Financial Training Bundle</p>
+                                    <p class="text-xs text-gray-500">Apr 10, 2024</p>
+                                </div>
+                                <span class="font-bold">$300</span>
+                            </div>
+                            <div class="flex items-center justify-between text-gray-700 p-2 rounded-lg bg-gray-50">
+                                <div class="flex flex-col">
+                                    <p class="font-medium">MEA Go-Live Assistance</p>
+                                    <p class="text-xs text-gray-500">May 05, 2024</p>
+                                </div>
+                                <span class="font-bold">$500</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="partial-downgrade-tabs-books" class="space-y-3 hidden">
+                        <h3 class="text-base font-bold text-gray-800 mb-3">Select Features to Downgrade</h3>
+                        <div class="flex border-b border-gray-300 overflow-x-auto">
+                           <button class="tab-button active flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="license-books">License</button>
+                           <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="support-books">Support</button>
+                           <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="service-books">Service</button>
+                           <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="training-books">Training</button>
+                           <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="certification-books">Certification</button>
+                           <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="training-certification-books">Training & Certification</button>
+                           <button class="tab-button flex-shrink-0 px-4 py-2 text-sm text-gray-500 rounded-t-lg border-b-2 border-transparent transition-colors duration-200 ease-in-out hover:text-gray-900" data-tab-target="enablement-mea-books">Enablement Service - MEA</button>
+                        </div>
+                        <div class="bg-white p-3 rounded-b-xl rounded-tr-xl shadow-inner border border-gray-200 text-sm">
+                            <div id="license-books" class="tab-content">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="250" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Monthly Subscription</p>
+                                            <p class="text-xs text-gray-500">Dec 01, 2023</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$250</p>
+                                </label>
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="300" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Zoho Books Business (Annual)</p>
+                                            <p class="text-xs text-gray-500">Dec 15, 2023</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$300</p>
+                                </label>
+                            </div>
+                            <div id="support-books" class="tab-content hidden">
+                                 <label class="downgrade-feature-option flex items-center justify-between text-gray-700 pb-2 mb-2 border-b border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="100" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Payroll Add-on</p>
+                                            <p class="text-xs text-gray-500">Dec 20, 2023</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$100</p>
+                                </label>
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="80" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Priority Support Add-on</p>
+                                            <p class="text-xs text-gray-500">Jan 01, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$80</p>
+                                </label>
+                            </div>
+                             <div id="service-books" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="600" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Data Migration Service</p>
+                                            <p class="text-xs text-gray-500">Jan 10, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$600</p>
+                                </label>
+                            </div>
+                            <div id="training-books" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="200" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Zoho Books Certified User Course</p>
+                                            <p class="text-xs text-gray-500">Feb 05, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$200</p>
+                                </label>
+                            </div>
+                            <div id="certification-books" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="120" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Zoho Books Pro Advisor Certification</p>
+                                            <p class="text-xs text-gray-500">Mar 01, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$120</p>
+                                </label>
+                            </div>
+                            <div id="training-certification-books" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="300" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">Advanced Financial Training Bundle</p>
+                                            <p class="text-xs text-gray-500">Apr 10, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$300</p>
+                                </label>
+                            </div>
+                            <div id="enablement-mea-books" class="tab-content hidden">
+                                <label class="downgrade-feature-option flex items-center justify-between text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" data-value="500" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                        <div class="ml-4">
+                                            <p class="font-medium">MEA Go-Live Assistance</p>
+                                            <p class="text-xs text-gray-500">May 05, 2024</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-bold">$500</p>
+                                </label>
+                            </div>
                             <div class="flex justify-between items-center text-gray-900 border-t border-gray-200 pt-2 mt-2">
                                 <p class="font-bold">Selected Total</p>
                                 <p id="selected-total-amount-books" class="font-bold text-lg">$0</p>
@@ -321,12 +565,10 @@
                     </div>
                 </div>
 
-                <!-- Action Buttons for Step 1 -->
                 <div id="step-1-buttons" class="flex justify-between items-center pt-2">
                     <button id="back-button-1" class="px-6 py-2 bg-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-300 transition-colors duration-200 ease-in-out shadow-md text-sm">
                         Back
                     </button>
-                    <!-- UPDATED: Removed the Custom Downgrade button, changed flex to justify-end -->
                     <div class="flex justify-end space-x-3">
                         <button id="proceed-button" disabled class="px-6 py-2 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-700 transition-colors duration-200 ease-in-out shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed text-sm">
                             Proceed with Downgrade
@@ -336,9 +578,7 @@
             </div>
         </div>
 
-        <!-- Section for Step 2 content - initially hidden -->
         <div id="step-2-content" class="hidden">
-            <!-- Red alert message for Step 2 - always visible in this step -->
             <div id="step-2-red-message" class="bg-red-50 border-l-4 border-red-400 text-red-700 p-3 rounded-lg" role="alert">
                 <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -352,19 +592,14 @@
             </div>
             
             <div class="bg-white rounded-3xl shadow-xl p-6 space-y-4 mt-6">
-                <!-- Refund Calculation Header -->
                 <div>
                     <h2 class="text-lg font-bold text-gray-800">Refund Calculation</h2>
                     <p class="text-gray-500 mt-1 text-sm">Review refund eligibility and process</p>
                 </div>
-
-                <!-- Disabled Customer Email Input -->
                 <div>
                     <label for="customer-email-step-2" class="block text-sm font-medium text-gray-700 mb-1">Customer Email</label>
                     <input type="email" id="customer-email-step-2" value="customer@example.com" disabled class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed text-sm">
                 </div>
-
-                <!-- Disabled Select Service Dropdown -->
                 <div>
                     <label for="service-step-2" class="block text-sm font-medium text-gray-700 mb-1">Select Service</label>
                     <button id="service-step-2" disabled class="custom-select-btn w-full flex items-center justify-between px-3 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed text-sm">
@@ -374,8 +609,6 @@
                         </svg>
                     </button>
                 </div>
-                
-                <!-- Disabled Select Portal Dropdown -->
                 <div>
                     <label for="portal-step-2" class="block text-sm font-medium text-gray-700 mb-1">Select Portal</label>
                     <button id="portal-step-2" disabled class="custom-select-btn w-full flex items-center justify-between px-3 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed text-sm">
@@ -385,14 +618,10 @@
                         </svg>
                     </button>
                 </div>
-
-                <!-- Disabled Zoho Unique ID (ZUID) Input -->
                 <div>
                     <label for="zuid-step-2" class="block text-sm font-medium text-gray-700 mb-1">Zoho Unique ID (ZUID)</label>
                     <input type="text" id="zuid-step-2" value="ZUID-0001" disabled class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed text-sm">
                 </div>
-
-                <!-- Account Inactive Alert Message -->
                 <div id="account-inactive-message" class="bg-red-50 border-l-4 border-red-400 text-red-700 p-3 rounded-lg" role="alert">
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -404,13 +633,10 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Action Buttons for Step 2 with new "Extend Days" button -->
                 <div class="pt-2 flex justify-between">
                     <button id="back-to-downgrade-button" class="px-6 py-2 bg-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-300 transition-colors duration-200 ease-in-out shadow-md text-sm">
                         Back to Downgrade
                     </button>
-                    <!-- NEW: Extend Days button and icon -->
                     <button id="extend-days-button" class="px-6 py-2 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-700 transition-colors duration-200 ease-in-out shadow-md flex items-center space-x-2 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M7 11h.01M11 11h.01M15 11h.01M17 11h.01M7 15h.01M11 15h.01M15 15h.01M17 15h.01M3 21h18a2 2 0 002-2V8a2 2 0 00-2-2H3a2 2 0 00-2 2v11a2 2 0 002 2z" />
@@ -421,9 +647,8 @@
             </div>
         </div>
 
-        <!-- Refund Policy Summary -->
         <div class="bg-blue-50 rounded-2xl p-5 border border-blue-200 mt-6">
-            <h3 class="text-sm font-bold text-gray-800 mb-3">Refund Policy Summary</h3>
+            <h3 class="text-sm font-bold text-blue-900 mb-3">Refund Policy Summary</h3>
             <ul class="policy-list text-xs md:text-sm text-gray-700">
                 <li>Monthly subscriptions: Full refund within first 30 days</li>
                 <li>Annual subscriptions: Full refund within first 45 days</li>
@@ -434,9 +659,7 @@
         </div>
     </div>
 
-    <!-- Pop-up Modal for Extending Days - Initially Hidden -->
     <div id="extend-days-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center p-4 hidden">
-        <!-- Modal content -->
         <div class="bg-white p-6 rounded-xl shadow-2xl max-w-md w-full relative">
             <div class="flex justify-between items-center mb-4">
                 <div class="flex items-center space-x-2">
@@ -445,46 +668,24 @@
                     </svg>
                     <h3 class="text-lg font-bold text-gray-800">Confirm Subscription Extension</h3>
                 </div>
-                <!-- Close button for the modal -->
                 <button id="close-modal-button" class="text-gray-400 hover:text-gray-600 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-
             <div class="space-y-3 my-4 text-gray-700 text-sm">
-                <div class="flex justify-between">
-                    <span>Credit Amount:</span>
-                    <span class="font-bold text-green-600">$-2,705</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>Original End Date:</span>
-                    <span class="font-bold">Oct 31, 2023</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>New End Date:</span>
-                    <span class="font-bold text-blue-600">Oct 31, 2023</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>Days Extended:</span>
-                    <span class="font-bold">-541 days</span>
-                </div>
+                <div class="flex justify-between"><span>Credit Amount:</span><span class="font-bold text-green-600">$-2,705</span></div>
+                <div class="flex justify-between"><span>Original End Date:</span><span class="font-bold">Oct 31, 2023</span></div>
+                <div class="flex justify-between"><span>New End Date:</span><span class="font-bold text-blue-600">Oct 31, 2023</span></div>
+                <div class="flex justify-between"><span>Days Extended:</span><span class="font-bold">-541 days</span></div>
             </div>
-
             <div class="bg-blue-50 border-l-4 border-blue-400 text-blue-700 p-3 rounded-lg my-4" role="alert">
-                <p class="text-sm">
-                    Your subscription will be extended by -541 days based on the prorated credit of $-2,705.
-                </p>
+                <p class="text-sm">Your subscription will be extended by -541 days based on the prorated credit of $-2,705.</p>
             </div>
-
             <div class="flex justify-end space-x-3">
-                <button id="cancel-extend-button" class="px-4 py-2 bg-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-300 transition-colors text-sm">
-                    Cancel
-                </button>
-                <button id="confirm-extension-button" class="px-4 py-2 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-700 transition-colors text-sm">
-                    Confirm Extension
-                </button>
+                <button id="cancel-extend-button" class="px-4 py-2 bg-gray-200 text-gray-700 font-medium rounded-xl hover:bg-gray-300 transition-colors text-sm">Cancel</button>
+                <button id="confirm-extension-button" class="px-4 py-2 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-700 transition-colors text-sm">Confirm Extension</button>
             </div>
         </div>
     </div>
