@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const serviceSelectDropdown = document.getElementById('custom-select-dropdown');
     const crmFieldsContainer = document.getElementById('crm-fields');
     const booksFieldsContainer = document.getElementById('books-fields');
+    const extendDaysButton = document.getElementById('extend-days-button');
+
+    let selectedDowngradeType = ''; // To store the selected downgrade type
 
     function setActiveStep(activeButton, inactiveButton) {
         activeButton.classList.add('active');
@@ -30,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.getElementById('red-message').classList.add('hidden');
         proceedButton.disabled = true;
+        extendDaysButton.classList.add('hidden'); // Hide on reset
     }
 
     function resetServiceSection(service) {
@@ -79,6 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
         setActiveStep(step2Button, step1Button);
         step1Content.classList.add('hidden');
         step2Content.classList.remove('hidden');
+        // Show/hide extend days button based on selectedDowngradeType
+        if (selectedDowngradeType === 'partial') {
+            extendDaysButton.classList.remove('hidden');
+        } else {
+            extendDaysButton.classList.add('hidden');
+        }
     });
 
     serviceSelectButton.addEventListener('click', (e) => {
@@ -128,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         downgradeRadios.forEach(radio => {
             radio.addEventListener('change', (e) => {
+                selectedDowngradeType = e.target.value; // Update the global variable
                 const isPartial = e.target.value === 'partial';
                 partialTabs.classList.toggle('hidden', !isPartial);
                 completeList.classList.toggle('hidden', isPartial);
@@ -168,6 +179,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setActiveStep(step2Button, step1Button);
             step1Content.classList.add('hidden');
             step2Content.classList.remove('hidden');
+            // Show/hide extend days button based on selectedDowngradeType
+            if (selectedDowngradeType === 'partial') {
+                extendDaysButton.classList.remove('hidden');
+            } else {
+                extendDaysButton.classList.add('hidden');
+            }
         }, 1500);
     });
     
